@@ -1,6 +1,19 @@
+# by default, we're going to store all of the containers data throughout this compose file into this
+# container-data directory so we can add it into gitignore
 TRANSMISSION_HOME=./container-data/transmission
+
+# the port that you want to access transmission at
 TRANSMISSION_PORT=9091
+
+# by default, transmission will download into the home directory but if you want it to go somewhere else,
+# this variable is mapped to /downloads in the docker container. Can set this to any location on your machine.
+TRANSMISSION_DOWNLOAD_DIR=####
+
+# the openvpn config per haugene's documentation
 OPENVPN_PROVIDER==####
 OPENVPN_CONFIG==####
 OPENVPN_USERNAME=####
 OPENVPN_PASSWORD==####
+
+# the subnet for your network
+LOCAL_NETWORK=192.168.1.0/24

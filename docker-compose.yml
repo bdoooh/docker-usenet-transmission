@@ -6,7 +6,7 @@ services:
     volumes:
       # - /etc/localtime:/etc/localtime:ro
       - ${TRANSMISSION_HOME}:/data
-      - /Users/brendando/Downloads/:/downloads
+      - ${TRANSMISSION_DOWNLOAD_DIR}:/downloads
       - ./openvpn/vpnunlimited/:/etc/openvpn/vpnunlimited
     ports:
       - ${TRANSMISSION_PORT}:9091
@@ -15,5 +15,10 @@ services:
       - OPENVPN_CONFIG=${OPENVPN_CONFIG}
       - OPENVPN_USERNAME=${OPENVPN_USERNAME}
       - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
+      - OPENVPN_OPTS=--inactive 3600 --ping 10 --ping-exit 60
+      - LOCAL_NETWORK=${LOCAL_NETWORK}
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     restart: always
     privileged: true
