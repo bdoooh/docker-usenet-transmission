@@ -1,0 +1,19 @@
+version: '2'
+services:
+  transmission:
+    image: haugene/transmission-openvpn:latest
+    container_name: transmission
+    volumes:
+      # - /etc/localtime:/etc/localtime:ro
+      - ${TRANSMISSION_HOME}:/data
+      - /Users/brendando/Downloads/:/downloads
+      - ./openvpn/vpnunlimited/:/etc/openvpn/vpnunlimited
+    ports:
+      - ${TRANSMISSION_PORT}:9091
+    environment:
+      - OPENVPN_PROVIDER=${OPENVPN_PROVIDER}
+      - OPENVPN_CONFIG=${OPENVPN_CONFIG}
+      - OPENVPN_USERNAME=${OPENVPN_USERNAME}
+      - OPENVPN_PASSWORD=${OPENVPN_PASSWORD}
+    restart: always
+    privileged: true
